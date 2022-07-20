@@ -49,7 +49,7 @@ func NewRocksDB(name string, dir string) (*RocksDB, error) {
 
 func NewRocksDBWithOptions(name string, dir string, opts *gorocksdb.Options) (*RocksDB, error) {
 	dbPath := filepath.Join(dir, name+".db")
-	db, err := gorocksdb.OpenDbForReadOnly(opts, dbPath)
+	db, err := gorocksdb.OpenDbForReadOnly(opts, dbPath, false)
 	if err != nil {
 		return nil, err
 	}
