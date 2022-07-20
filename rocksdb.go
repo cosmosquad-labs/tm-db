@@ -1,3 +1,4 @@
+//go:build rocksdb
 // +build rocksdb
 
 package db
@@ -48,7 +49,7 @@ func NewRocksDB(name string, dir string) (*RocksDB, error) {
 
 func NewRocksDBWithOptions(name string, dir string, opts *gorocksdb.Options) (*RocksDB, error) {
 	dbPath := filepath.Join(dir, name+".db")
-	db, err := gorocksdb.OpenDb(opts, dbPath)
+	db, err := gorocksdb.OpenDbForReadOnly(opts, dbPath)
 	if err != nil {
 		return nil, err
 	}
